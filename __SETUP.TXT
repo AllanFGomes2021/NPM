@@ -1,0 +1,123 @@
+NPM
+================================================================
+Gerenciadores de pacotes (Package Manager)
+  composer (PHP) | npm (NODE) | PIP (PYTHON)
+
+
+NPM = NODE PACKAGE MANAGER
+-Existe um banco de dados de pacote, chamado: npm registry
+-totalmente em javascript
+-precisamos instalar node.js para termos acesso NPM
+
+NODE.JS
+- um interpretador de javascript
+- V8 script que transforma o JS em C++
+- Consegue executar vários processos em uma single thread,
+ou seja, processos assíncronos (event loop)
+
+SITE NPM
+---------------------------------------
+https://www.npmjs.com/
+
+
+JSON
+-----------------------------------
+JavaScript Object Notation
+chave e valores
+
+STACKFLOW
+----------------------------------
+https://pt.stackoverflow.com/
+
+package.json --> guarda os pacote diretos utilizados
+package-lock.json --> guarda os pacote diretos e indiretos utilizados (as dependências)
+
+
+ENTENDENDO AS VERSÕES
+-----------------------------------------------------------------------------------------------------
+2.    1.    0
+major minor patch
+
+^ indica que a versão minor e patch pode ser atualizada
+~ indica que a versão patch pode ser atualizada
+  sem circunflexo que a versão não pode ser atualizada
+
+2.1.1 --> pequenas correção sem quebras (bug fix)
+2.2.0 --> adicionar novos recursos sem quebras (new feature)
+3.0.0 --> pode haver quebra de compatibilidade entre versões (new version)
+
+LTS - long time suport
+
+EXEMPLOS:
+1.0.4 --> Não permite atualizar nada
+1.0  |  1.0.x  | ~1.0.4 --> atualização do PATCH
+1    |  1.x    | ^1.0.4 --> atualização do MINOR
+x    |  *      |        --> permite atualizar VERSÃO/MINOR/PACTH --> Quaisquer alteração
+
+NPM SCRIPTS
+--------------------------------------------------------------------
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+  },
+
+COMANDOS
+----------------------------------
+npm init --> inicia o npm : cria o package.json
+npm init --yes --> inicia o npm : cria o package.json -- Mais não pergunta (utiliza Config)
+npm install <pacote> ou npm i <pacote>  --> instala um pacote na última versão com direito a atualização
+npm install <pacote> -E --> instala última versão sem direito a atualização
+npm install <pacote> -D ou npm i <pacote> -D  --> instala um pacote de desenvolvimento na ultima versão
+npm install <pacote> -E --> instala última versão sem direito a atualização
+npm install <pacote>@N.x  --> instala a versão N (minor e patch sendo a ultima) com direito a atualização
+npm install <pacote>@versão --> atualiza para uma versão especifica com direito atualização
+npm install <pacote>@versão -E --> atualiza para uma versão especifica sem direito atualização
+npm install <pacote>@latest ou npm install <pacote>@* --> atualiza para ultima versão
+npm install <pacote> --no-save --> instala o pacote sem registrar suas dependências no projeto
+npm install <pacote> --save-dev --> move da dependência para dependência de desenvolvimento
+npm install <pacote> --save-prod --> move da dependência de desenvolvimento para dependência
+npm install <pacote> -g --> instala o pacote globalmente
+    npm link <pacote> --> faz um link com o global
+
+npm ls ou npm list --> lista os pacotes instalados e suas dependências
+npm ls --depth=0 --> só pacote de primeiro nível (profundidade  = 0)
+npm ls --depth=1 --> só pacote de segundo nível (profundidade  = 1)
+npm ls -g --> lista os pacotes instalados e suas dependências
+
+npm uninstall <pacote> ou npm rm <pacote> ou npm remove <pacote> --> desinstala um pacote
+npm remove <pacote> -g --> desinstala um pacote global
+npm prune --> remove todos os pacotes que não estão mais sendo utilizados pelo o projeto (limpa)
+npm outdated --> lista os pacotes desatualizados
+npm update --> atualiza os pacotes desatualizados conforme permissões
+
+npm --version  |  npm --v  --> verificar a versão
+npm search <pacote> --> exibe informações dos pacotes
+npm search <pacote> dependencies --> exibe informações dos pacotes e suas dependências
+npm show <pacote> --> exibe informações dos pacotes
+npm view <pacote> --> exibe informações dos pacotes
+npm help <comando> --> exibe a documentação referente ao comando
+npm docs <pacote> --> acessa a documentação do pacote
+npm home <pacote> --> acessa a home do pacote
+npm ddp | npm dedupe --> reduz as dependências duplicadas
+npm run --> exibe os script do projeto
+
+cache
+---------------------------------------
+npm cache verify --> informações referente ao cache
+npm cache clear --force --> limpa o cache
+
+auditoria
+---------------------------------------
+npm audit --> lista pacotes com falha de segurança
+npm audit fix --> faz correção no pacote ~ caso seja versão ela não fará a correção
+npm audit fix --force --> faz correção no pacote ~ atualiza a versão, mas pode haver quebra
+
+http://docs.npmjs.com/misc/config
+npm config set init-author-name <nome do autor>
+npm config set init-author-email <email do autor>
+npm config set init-license <MIT | Apache-2.0 | GPL | UNLICENSED>
+npm config set init-author-url <"url">
+
+npm get --> exibe todos as configurações do npm
+npm config ls -l --> exibe todos os defaults
+npm config delete <chave> --> exclui uma configuração chave ex: chave = author
